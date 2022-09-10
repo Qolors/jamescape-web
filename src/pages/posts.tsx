@@ -16,13 +16,15 @@ const Posts: NextPage = (props) => {
         
         <p className="text-2xl text-gray-700">Posts:</p>
         <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
-          {props.posts.map((p) => 
-          <a href={`/posts/${p.id}`}>
+          {props.posts.map((p) =>
+           
+          <a key={p.id} href={`/posts/${p.id}`}>
+            {console.log(p)}
             <TechnologyCard
-              key={p.id}
               name={p.title}
               description={p.body}
               category={p.category}
+              image={p.image ? p.image : './jamescape.png'}
             />
           </a>
           )}
@@ -38,18 +40,20 @@ type TechnologyCardProps = {
   name: string;
   description: string;
   category: string;
+  image: string;
 };
 
 const TechnologyCard = ({
   name,
   description,
-  category
+  category,
+  image
 }: TechnologyCardProps) => {
   return (
     <>
     <section>
       <div className="mx-auto flex w-full flex-col justify-center bg-base-100 rounded-2xl shadow-xl shadow-gray-400/20">
-        <img className="aspect-video w-full rounded-t-2xl object-cover object-center" src="https://asset.vg247.com/OSRS_tombs_of_amascut.jpg/BROK/thumbnail/1600x900/quality/100/OSRS_tombs_of_amascut.jpg" />
+        <img className="aspect-video w-full rounded-t-2xl object-cover object-center" src={`${image}`} />
         <div className="p-6">
           <small className=" text-green-600 text-xs">{category}</small>
           <h1 className="text-2xl font-medium text-gray-800 pb-2">{name}</h1>

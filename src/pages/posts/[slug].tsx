@@ -6,7 +6,7 @@ const Post = (props) => {
         <section className="bg-base-200 min-h-screen flex place-items-center">
             <div className="container px-6 py-10 mx-auto">
                 <div className="lg:-mx-6 lg:flex lg:items-center">
-                    <img className="object-cover object-center lg:w-1/2 lg:mx-6 w-full h-96 rounded-lg lg:h-[36rem]" src="https://asset.vg247.com/OSRS_tombs_of_amascut.jpg/BROK/thumbnail/1600x900/quality/100/OSRS_tombs_of_amascut.jpg" alt="" />
+                    <img className="object-cover object-center lg:w-1/2 lg:mx-6 w-full h-96 rounded-lg lg:h-[36rem]" src={props.post.image !== '' ? `${props.post.image}` : '../jamescape.png'} alt="" />
 
                     <div className="mt-8 lg:w-1/2 lg:px-6 lg:mt-0">
                         <p className="text-5xl font-semibold text-primary ">“</p>

@@ -13,4 +13,5 @@ model posts {
   body     String
   category String
   title    String
+  image    String
 }
