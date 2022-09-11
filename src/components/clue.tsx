@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Clue = (props) => {
+const Clue = (props: any) => {
 
     const formatter = Intl.NumberFormat('en', { notation: 'compact'})
 

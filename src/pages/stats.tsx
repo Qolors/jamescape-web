@@ -5,7 +5,7 @@ import Skilling from "../components/skilling";
 import Bossing from "../components/bossing";
 import Clue from "../components/clue";
 
-const Stats: NextPage = (props) => {
+const Stats: NextPage = (props: any) => {
     //View Handler for Button On Toggle
     //skill, boss, clue
     const [seeStat, setSeeStat] = useState('skill');

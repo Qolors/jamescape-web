@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { prisma } from "../server/db/client";
 
-const Posts: NextPage = (props) => {
+const Posts: NextPage = (props: any) => {
 
   return (
     <>

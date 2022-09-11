@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Skilling = (props) => {
+const Skilling = (props: any) => {
 
     const formatter = Intl.NumberFormat('en', { notation: 'compact'})
 

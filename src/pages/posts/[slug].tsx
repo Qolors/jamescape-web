@@ -1,6 +1,6 @@
 import { prisma } from "../../server/db/client";
 
-const Post = (props) => {
+const Post = (props: any) => {
     return (
 
         <section className="bg-base-200 min-h-screen flex place-items-center">
@@ -32,7 +32,7 @@ const Post = (props) => {
 
 export default Post;
 
-export const getServerSideProps: GetServerSideProps = async pageContext => {
+export const getServerSideProps: GetServerSideProps = async (pageContext: any) => {
 
     const pageSlug = pageContext.query.slug;
 

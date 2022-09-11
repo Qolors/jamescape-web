@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Bossing = (props) => {
+const Bossing = (props: any) => {
 
     const formatter = Intl.NumberFormat('en', { notation: 'compact'})
 
