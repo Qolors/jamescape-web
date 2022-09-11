@@ -19,7 +19,6 @@ const Posts: NextPage = (props: any) => {
           {props.posts.map((p: any) =>
            
           <a key={p.id} href={`/posts/${p.id}`}>
-            {console.log(p)}
             <TechnologyCard
               name={p.title}
               description={p.body}
