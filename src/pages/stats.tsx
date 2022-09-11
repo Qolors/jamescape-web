@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async () => {
     let skillGroup = [];
     let bossGroup = [];
     let cluesGroup = [];
-    const innerObj = {};
+    const innerObj: any = {};
     //Initial Cleanse
     for (var obj in mineData.latestSnapshot){
         if (mineData.latestSnapshot.hasOwnProperty(obj)){
