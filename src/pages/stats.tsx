@@ -72,20 +72,20 @@ export const getStaticProps: GetStaticProps = async () => {
     //Update on Name Change request
     const url = "https://api.wiseoldman.net/players/username/legault432"
     const result = await fetch(url)
-    let mineData = await result.json()
-    let skillGroup = [];
-    let bossGroup = [];
-    let cluesGroup = [];
+    const mineData = await result.json()
+    const skillGroup = [];
+    const bossGroup = [];
+    const cluesGroup = [];
     const innerObj: any = {};
     //Initial Cleanse
-    for (var obj in mineData.latestSnapshot){
+    for (const obj in mineData.latestSnapshot){
         if (mineData.latestSnapshot.hasOwnProperty(obj)){
             innerObj[obj] = mineData.latestSnapshot[obj];
             
         }
     }
     //Splitting of Data
-    for (var chunks in innerObj) {
+    for (const chunks in innerObj) {
         if(innerObj[chunks]?.experience) {
             skillGroup.push({
                 skill: {

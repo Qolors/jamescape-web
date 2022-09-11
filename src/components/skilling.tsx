@@ -22,10 +22,10 @@ const Skilling = (props: any) => {
                 </thead>
                 <tbody>
                     {props.props.map((s: any) => {
-                        let str = formatter.format(parseInt(s.skill.experience))
-                        let rstr = s.skill.rank.toLocaleString("en-US")
+                        const str = formatter.format(parseInt(s.skill.experience))
+                        const rstr = s.skill.rank.toLocaleString("en-US")
                         return(
-                        <tr>
+                        <tr key={s.skill.name}>
                             <th>
                                 <img className='min-w-[24px]' src={`https://wiseoldman.net/img/runescape/icons_small/${s.skill.name}.png`} />
                             </th>

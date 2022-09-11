@@ -6,7 +6,7 @@ const Bossing = (props: any) => {
 
     const trimmer = (x: string) => {
         if (x.includes('_')){
-            let chop = x.replace('_', '');
+            const chop = x.replace('_', '');
             return chop.charAt(0).toUpperCase() + chop.slice(1);
         }
         return x.charAt(0).toUpperCase() + x.slice(1);
@@ -26,11 +26,11 @@ const Bossing = (props: any) => {
                 </thead>
                 <tbody>
                     {props.props.map((s: any) => {
-                        let str = formatter.format(parseInt(s.boss.kills))
-                        let rstr = s.boss.rank.toLocaleString("en-US")
+                        const str = formatter.format(parseInt(s.boss.kills))
+                        const rstr = s.boss.rank.toLocaleString("en-US")
                         if (s.boss.kills > 0){
                         return(
-                        <tr>
+                        <tr key={s.boss.name}>
                             <th>
                                 <img className='min-w-[24px]' src={`https://wiseoldman.net/img/runescape/icons_small/${s.boss.name}.png`} />
                             </th>

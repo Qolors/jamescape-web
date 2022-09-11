@@ -6,7 +6,7 @@ const Clue = (props: any) => {
 
     const trimmer = (scout: string) => {
         if (scout.includes('clue_scrolls_')){
-            let sara = scout.replace('clue_scrolls_', '');
+            const sara = scout.replace('clue_scrolls_', '');
             return sara.charAt(0).toUpperCase() + sara.slice(1);
         }
     }
@@ -25,11 +25,11 @@ const Clue = (props: any) => {
                 </thead>
                 <tbody>
                     {props.props.map((s: any) => {
-                        let str = formatter.format(parseInt(s.clue.score))
-                        let rstr = s.clue.rank.toLocaleString("en-US")
+                        const str = formatter.format(parseInt(s.clue.score))
+                        const rstr = s.clue.rank.toLocaleString("en-US")
                         if (s.clue.score > 0){
                         return(
-                        <tr>
+                        <tr key={s.clue.name}>
                             <th>
                                 <img className='min-w-[24px]' src={`https://wiseoldman.net/img/runescape/icons_small/${s.clue.name}.png`} />
                             </th>
