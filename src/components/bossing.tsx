@@ -25,7 +25,7 @@ const Bossing = (props: any) => {
                 </tr>
                 </thead>
                 <tbody>
-                    {props.props.map(s => {
+                    {props.props.map((s: any) => {
                         let str = formatter.format(parseInt(s.boss.kills))
                         let rstr = s.boss.rank.toLocaleString("en-US")
                         if (s.boss.kills > 0){

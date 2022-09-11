@@ -16,7 +16,7 @@ const Posts: NextPage = (props: any) => {
         
         <p className="text-2xl text-gray-700">Posts:</p>
         <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
-          {props.posts.map((p) =>
+          {props.posts.map((p: any) =>
            
           <a key={p.id} href={`/posts/${p.id}`}>
             {console.log(p)}

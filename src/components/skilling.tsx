@@ -21,7 +21,7 @@ const Skilling = (props: any) => {
                 </tr>
                 </thead>
                 <tbody>
-                    {props.props.map(s => {
+                    {props.props.map((s: any) => {
                         let str = formatter.format(parseInt(s.skill.experience))
                         let rstr = s.skill.rank.toLocaleString("en-US")
                         return(

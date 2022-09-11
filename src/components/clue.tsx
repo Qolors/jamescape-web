@@ -24,7 +24,7 @@ const Clue = (props: any) => {
                 </tr>
                 </thead>
                 <tbody>
-                    {props.props.map(s => {
+                    {props.props.map((s: any) => {
                         let str = formatter.format(parseInt(s.clue.score))
                         let rstr = s.clue.rank.toLocaleString("en-US")
                         if (s.clue.score > 0){
