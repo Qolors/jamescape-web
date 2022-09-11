@@ -4,7 +4,7 @@ const Clue = (props: any) => {
 
     const formatter = Intl.NumberFormat('en', { notation: 'compact'})
 
-    const trimmer = (scout) => {
+    const trimmer = (scout: string) => {
         if (scout.includes('clue_scrolls_')){
             let sara = scout.replace('clue_scrolls_', '');
             return sara.charAt(0).toUpperCase() + sara.slice(1);

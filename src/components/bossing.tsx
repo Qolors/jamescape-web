@@ -4,7 +4,7 @@ const Bossing = (props: any) => {
 
     const formatter = Intl.NumberFormat('en', { notation: 'compact'})
 
-    const trimmer = (x) => {
+    const trimmer = (x: string) => {
         if (x.includes('_')){
             let chop = x.replace('_', '');
             return chop.charAt(0).toUpperCase() + chop.slice(1);

@@ -1,4 +1,5 @@
 import { prisma } from "../../server/db/client";
+import { GetServerSideProps } from "next";
 
 const Post = (props: any) => {
     return (

@@ -4,7 +4,7 @@ const Skilling = (props: any) => {
 
     const formatter = Intl.NumberFormat('en', { notation: 'compact'})
 
-    const trimmer = (scout) => {
+    const trimmer = (scout: string) => {
         return scout.charAt(0).toUpperCase() + scout.slice(1);
     }
 
