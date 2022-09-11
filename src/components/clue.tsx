@@ -12,7 +12,7 @@ const Clue = (props: any) => {
     }
 
   return (
-            <table className="table w-full">
+            <table className="sm:w-full md:w-1/2 lg:w-3/4 w-full table table-compact">
                 <thead>
                 <tr>
                     <th>
@@ -29,7 +29,7 @@ const Clue = (props: any) => {
                         const rstr = s.clue.rank.toLocaleString("en-US")
                         if (s.clue.score > 0){
                         return(
-                        <tr key={s.clue.name}>
+                        <tr className="bg-base-100" key={s.clue.name}>
                             <th>
                                 <img className='min-w-[24px]' src={`https://wiseoldman.net/img/runescape/icons_small/${s.clue.name}.png`} />
                             </th>

@@ -1,20 +1,26 @@
 import type { NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
 
 const Home: NextPage = () => {
 
   
 
   return (
-    <div className="bg-base-200">
+    <div className="w-full bg-base-200">
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src="./jamescape.png" className="max-w-full object-contain rounded-lg drop-shadow-2xl" />
         <div>
-          <h1 className="text-6xl font-bold"><span className="text-primary">Jame</span>Scape</h1>
+          <h1 className="text-4xl md:text-6xl font-bold text-center"><span className="text-primary">Jame</span>Scape</h1>
           <p className="pt-1 pb-6 text-center font-medium opacity-60">A Solo Player Blog</p>
           <div className=" place-items-center gap-6 justify-center flex">
-            <button className="btn btn-primary px-6">Posts</button>
-            <button className="btn btn-primary px-6">Stats</button>
+            <Link href='/posts'>
+              <button className="btn btn-primary px-6">Posts</button>
+            </Link>
+            <Link href='/stats'>
+              <button className="btn btn-primary px-6">Stats</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -24,20 +30,20 @@ const Home: NextPage = () => {
     <div className="flex pb-24 container bg-base-200 flex-col w-full lg:w-3/4 mx-auto border-opacity-50">
       <NewsPost
         title="Account Swapping"
-        body="I have small pp I am swapping acc for ironman event"
+        body="Working on Farming until new event"
         date="05 Sep"
       />
       <div className="divider"></div>
       <NewsPost
         title="Account Swapping"
         body="I will be making an account swap for the new Iron Man Event"
-        date="05 Sep"
+        date="01 Jun"
       />
       <div className="divider"></div>
       <NewsPost
         title="Account Swapping"
-        body="I will be making an account swap for the new Iron Man Event"
-        date="05 Sep"
+        body="Bossing Grind"
+        date="02 Mar"
       />
     </div>
     </div>
@@ -61,6 +67,12 @@ const NewsPost = ({
 }: NewsPostProps) => {
 
   return (
+    <>
+    <Head>
+      <title>JameScape</title>
+      <meta name="JameScape Solo Player Blog" content="OSRS Blog Post" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <div className="grid p-2 bg-base-200">
         <h2 className="text-2xl font-bold flex gap-4 place-items-center">
           <span className="badge bg-primary badge-lg">{date}</span>
@@ -70,5 +82,6 @@ const NewsPost = ({
           {body}
         </p>
     </div>
+    </>
   )
 }

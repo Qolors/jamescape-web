@@ -13,7 +13,7 @@ const Bossing = (props: any) => {
     }
 
   return (
-            <table className="table w-full">
+            <table className="sm:w-full md:w-1/2 lg:w-3/4 w-full table table-compact">
                 <thead>
                 <tr>
                     <th>
@@ -30,7 +30,7 @@ const Bossing = (props: any) => {
                         const rstr = s.boss.rank.toLocaleString("en-US")
                         if (s.boss.kills > 0){
                         return(
-                        <tr key={s.boss.name}>
+                        <tr className='bg-base-100'key={s.boss.name}>
                             <th>
                                 <img className='min-w-[24px]' src={`https://wiseoldman.net/img/runescape/icons_small/${s.boss.name}.png`} />
                             </th>

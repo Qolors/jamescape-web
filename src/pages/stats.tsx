@@ -11,10 +11,10 @@ const Stats: NextPage = (props: any) => {
     const [seeStat, setSeeStat] = useState('skill');
 
     return (
-        <>
-        <div className="hero py-24 w-full bg-base-200">
-            <div className="hero-content">
-                <div className="relative max-w-md md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
+        <div className="w-full flex flex-col bg-base-200 place-items-center justify-center min-h-screen">
+        <div className="flex py-24 w-full bg-base-200">
+            <div className="mx-auto">
+                <div className="min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
                     <div className="px-6">
                         <div className="flex flex-wrap justify-center">
                             <div className="w-full flex justify-center">
@@ -57,10 +57,12 @@ const Stats: NextPage = (props: any) => {
                 </div>
             </div>
         </div>
+        <div className="w-full pb-28 flex justify-center">
         {seeStat === 'skill' && <Skilling props={props.skills} />}
         {seeStat === 'boss' && <Bossing props={props.bosses} />}
         {seeStat === 'clue' && <Clue props={props.clues} />}
-        </>
+        </div>
+        </div>
         
     )
 }

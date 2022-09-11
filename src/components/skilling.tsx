@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Skilling = (props: any) => {
 
@@ -9,7 +10,7 @@ const Skilling = (props: any) => {
     }
 
   return (
-            <table className="table w-full">
+            <table className='sm:w-full md:w-1/2 lg:w-3/4 w-full table table-compact'>
                 <thead>
                 <tr>
                     <th>
@@ -20,20 +21,20 @@ const Skilling = (props: any) => {
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody className=''>
                     {props.props.map((s: any) => {
                         const str = formatter.format(parseInt(s.skill.experience))
                         const rstr = s.skill.rank.toLocaleString("en-US")
                         return(
-                        <tr key={s.skill.name}>
+                        <tr className='bg-base-100' key={s.skill.name}>
                             <th>
-                                <img className='min-w-[24px]' src={`https://wiseoldman.net/img/runescape/icons_small/${s.skill.name}.png`} />
+                                <Image width={20} height={20} src={`https://wiseoldman.net/img/runescape/icons_small/${s.skill.name}.png`} alt="Skill Icon"/>
                             </th>
-                            <td>
+                            <td className=''>
                                 <div>{trimmer(s.skill.name)}</div>
                             </td>
                             <td>
-                                <div className='flex-col flex'>
+                                <div className='flex-col flex px-2'>
                                     {str}
                                     {((s.skill.experience / 13034431) * 100) >= 100 ?
                                     (<progress className="progress progress-success" value="100" max="100">99</progress>)

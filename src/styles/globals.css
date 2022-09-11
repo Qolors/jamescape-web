@@ -6,3 +6,9 @@
 html {
     data-theme: garden;
 }
+
+body,
+html {
+    padding: 0;
+    margin: 0;
+}
