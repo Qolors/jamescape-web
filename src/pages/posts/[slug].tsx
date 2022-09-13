@@ -16,7 +16,7 @@ const Post = (props: any) => {
                             {props.post.title}
                         </h1>
 
-                        <p className="max-w-lg mt-6 text-gray-800 dark:text-gray-400 ">
+                        <p className="max-w-lg mt-6 text-gray-800">
                             {props.post.body}
                         </p>
 
