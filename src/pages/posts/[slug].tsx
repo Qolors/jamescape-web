@@ -118,8 +118,8 @@ const Post = (props: any) => {
                 </div>
                 <div className="w-full flex flex-col place-items-center gap-4  pb-24">
                 {list && list.map((p: any) => {
-                        var content: string = p.content
-                        var author: string = p.author
+                        const content: string = p.content
+                        const author: string = p.author
 
                         return (
                             
