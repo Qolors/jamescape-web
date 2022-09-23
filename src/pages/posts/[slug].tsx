@@ -78,10 +78,10 @@ const Post = (props: any) => {
                 </div>
                 <div className="flex pb-24 flex-col gap-4 place-items-center pt-24 max-w-[500px]">
                     <h1 className="text-xl xl:text-3xl lg:text-2xl">Comments</h1>
-                    <form typeof="POST" onSubmit={(e) => {
-                        let x = ''
+                    <form onSubmit={(e) => {
+                        const x = ''
                         e.preventDefault()
-                        var setter: Comments = { content: text, author: userFilter(x), post: props.post.id}
+                        const setter: Comments = { content: text, author: userFilter(x), post: props.post.id}
                         postHandler(setter)
                         setText('');
                         }}>
