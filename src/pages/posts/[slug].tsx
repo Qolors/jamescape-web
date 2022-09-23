@@ -4,8 +4,6 @@ import CommentBox from "../../components/comment";
 import { useEffect, useState } from "react";
 import { SignedIn, RedirectToSignIn, SignedOut, useUser } from '@clerk/nextjs'
 import Toastify from 'toastify-js'
-import { isAbsolute } from "path";
-import { isAbsoluteUrl } from "next/dist/shared/lib/utils";
 
 type Comments = {
     content: string,
@@ -95,7 +93,7 @@ const Post = (props: any) => {
                             position: "center", // `left`, `center` or `right`
                             stopOnFocus: true, // Prevents dismissing of toast on hover
                             style: {
-                              zIndex: 100,
+                              zIndex: '100',
                             },
                             selector: "comehere",
                             className: "max-w-3/4 p-2 text-white text-center font-bold flex rounded-xl bg-success",
