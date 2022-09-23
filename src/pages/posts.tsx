@@ -56,6 +56,7 @@ const TechnologyCard = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const posts = await prisma.posts.findMany();
+  const unsorted = await prisma.posts.findMany();
+  const posts = unsorted.reverse()
   return { props: { posts } }
 }

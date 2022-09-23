@@ -2,10 +2,35 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../server/db/client";
 
-const allPosts = async (req: NextApiRequest, res: NextApiResponse) => {
-  const examples = await prisma.posts.findMany();
-  res.status(200).json(examples);
-  console.log(examples);
-};
 
-export default allPosts;
+
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+
+  if (req.method !== 'POST') {
+    res.status(405).send({ message: 'ONLY POST REQUESTS ALLOWED' })
+  }
+
+  const { body } = req
+  const { content, author, post } = JSON.parse(body)
+
+  const createComment = await prisma.comment.create({
+      data: { 
+          content: content,
+          author: author,
+          post: {
+              connect: { id: post }
+          }
+      }
+
+      
+
+  })
+  res.status(200).json({createComment})
+  console.log(createComment)
+
+
+
+
+}
+
+export default handler;
