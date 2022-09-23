@@ -3,6 +3,9 @@ import { GetServerSideProps } from "next";
 import CommentBox from "../../components/comment";
 import { useEffect, useState } from "react";
 import { SignedIn, RedirectToSignIn, SignedOut, useUser } from '@clerk/nextjs'
+import Toastify from 'toastify-js'
+import { isAbsolute } from "path";
+import { isAbsoluteUrl } from "next/dist/shared/lib/utils";
 
 type Comments = {
     content: string,
@@ -79,23 +82,38 @@ const Post = (props: any) => {
                 <div className="flex pb-24 flex-col gap-4 place-items-center pt-24 max-w-[500px]">
                     <h1 className="text-xl xl:text-3xl lg:text-2xl">Comments</h1>
                     <form onSubmit={(e) => {
+                        if (text == '') return
                         const x = ''
-                        e.preventDefault()
                         const setter: Comments = { content: text, author: userFilter(x), post: props.post.id}
                         postHandler(setter)
                         setText('');
+                        Toastify({
+                            text: "Post Submitted",
+                            duration: 3000,
+                            newWindow: false,
+                            gravity: "bottom", // `top` or `bottom`
+                            position: "center", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                              zIndex: 100,
+                            },
+                            selector: "comehere",
+                            className: "max-w-3/4 p-2 text-white text-center font-bold flex rounded-xl bg-success",
+                             // Callback after click
+                          }).showToast();
+                          
                         }}>
                         <div className="shadow sm:overflow-hidden sm:rounded-md">
-                        <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+                        <div id="comehere" className="space-y-6 bg-white px-4 py-5 sm:p-6">
 
                             
                             <label htmlFor="about" className="block text-sm font-medium text-gray-700">Contribute</label>
                             <div className="mt-1">
-                                <textarea id="about" name="about" onChange={onChange} rows={3} className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder=""></textarea>
+                                <textarea id="about" name="about" onChange={onChange} rows={3} className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-success focus:ring-success sm:text-sm" placeholder=""></textarea>
                             </div>
                             <p className="mt-2 text-sm text-gray-500">Brief Description of your Runescape Addiction perhaps?</p>
                             </div>
-                        <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                        <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 text-center">
                             
 
                             {!isLoaded || !isSignedIn ? (
