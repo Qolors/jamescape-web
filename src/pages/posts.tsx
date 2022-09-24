@@ -44,7 +44,7 @@ const TechnologyCard = ({
   image
 }: TechnologyCardProps) => {
   return (
-    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} transition={{ type: "spring", stiffness: 800, damping: 10 }} >
+    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 800, damping: 50 }} >
       <div className="mx-auto flex shadow-sm w-full object-cover flex-col justify-center bg-base-100">
         <div className="h-[300px] overflow-hidden">
           <img className="w-full object-center object-cover h-[300px]" src={`${image}`} />

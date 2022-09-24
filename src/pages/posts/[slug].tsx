@@ -181,11 +181,13 @@ export const getServerSideProps: GetServerSideProps = async (pageContext: any) =
         }
     })
 
-    const comments = await prisma.comment.findMany({
+    const commenter = await prisma.comment.findMany({
         where: {
             postid: `${pageSlug}`
         }
     })
+
+    const comments = commenter.reverse();
 
     return { props: { post, comments } }
   }
