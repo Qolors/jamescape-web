@@ -72,7 +72,7 @@ const Post = (props: any) => {
                         className="flex rotate-45 w-1/2 max-w-[100px]" 
                         src="/sword.png"
                         initial={{ rotateZ: 720, x: '-1000px'}}
-                        animate={{ rotateZ: 0, x: '10px' }}
+                        animate={{ rotateZ: 0, x: '5px' }}
                         transition={{ duration: 0.5 }}
                         />
                         <h1 className="text-5xl relative flex text-center font-semibold text-primary xl:text-4xl lg:w-96">

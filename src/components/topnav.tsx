@@ -2,6 +2,7 @@
 
 import { RedirectToSignIn, RedirectToUserProfile, SignedIn, SignedOut, UserProfile, useUser } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 
 const TopNav = () => {
@@ -31,8 +32,8 @@ const TopNav = () => {
 
     return (
         <div className="navbar bg-neutral text-base-200">
-        <div className="flex-1">
-            <a href="/" className="btn btn-ghost normal-case text-xl">JameScape</a>
+        <div className="flex-1 px-4">
+            <Link href="/" className="btn btn-ghost normal-case text-xl">JS</Link>
         </div>
         <div className="flex-none">
             <ul className="menu menu-horizontal p-0">
