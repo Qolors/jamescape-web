@@ -1,13 +1,17 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { prisma } from "../server/db/client";
+import { motion } from 'framer-motion'
 
 const Posts: NextPage = (props: any) => {
 
   return (
-      <div className="w-full bg-base-200 pb-24 pt-24 flex flex-col items-center justify-center min-h-screen">
-        
-        <p className="text-2xl text-gray-700">Posts:</p>
-        <div className="w-full grid grid-cols-1 px-2 gap-6 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
+      <div className="w-full bg-base-200 pb-24 flex flex-col items-center justify-center min-h-screen">
+        <div className="flex bg-white overflow-hidden px-2 w-full place-items-end mb-4 justify-center">
+        <p className="text-6xl lg:text-8xl -right-2 font-bold text-primary relative -bottom-2 flex">Feed.</p>
+        <img className="w-[100px] lg:w-[150px] drop-shadow-2xl relative -bottom-1" src="./post2.png" />
+
+        </div>
+        <div className="w-full grid grid-cols-1 gap-12 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
           {props.posts.map((p: any) =>
            
           <a key={p.id} href={`/posts/${p.id}`}>
@@ -40,17 +44,18 @@ const TechnologyCard = ({
   image
 }: TechnologyCardProps) => {
   return (
-
-      <div className="mx-auto flex w-full object-cover flex-col justify-center bg-base-100 rounded-2xl shadow-xl shadow-gray-400/20">
+    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} transition={{ type: "spring", stiffness: 800, damping: 10 }} >
+      <div className="mx-auto flex shadow-sm w-full object-cover flex-col justify-center bg-base-100">
         <div className="h-[300px] overflow-hidden">
-          <img className="w-full rounded-t-2xl object-center object-cover h-[300px]" src={`${image}`} />
+          <img className="w-full object-center object-cover h-[300px]" src={`${image}`} />
         </div>
-        <div className="p-6">
-          <small className=" text-green-600 text-xs">{category}</small>
-          <h1 className="text-2xl font-medium text-gray-800 pb-2">{name}</h1>
-          <p className="text text-gray-500 leading-6 truncate ...">{description}</p>
+        <div className="p-4 py-6 bg-base-100">
+          <p className=" text-green-200 font-bold text-left text-xs bg-primary p-2 px-4 w-fit rounded-xl">{category}</p>
+          <h1 className="text-2xl text-left font-medium py-2">{name}</h1>
+          <p className="text-sm text-left truncate ...">{description}</p>
         </div>
       </div>
+    </motion.div>
 
   );
 };

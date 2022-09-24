@@ -4,6 +4,7 @@ import CommentBox from "../../components/comment";
 import { useEffect, useState } from "react";
 import { SignedIn, RedirectToSignIn, SignedOut, useUser } from '@clerk/nextjs'
 import Toastify from 'toastify-js'
+import { motion } from 'framer-motion'
 
 type Comments = {
     content: string,
@@ -20,7 +21,7 @@ const Post = (props: any) => {
     const [list, setList] = useState([])
     const [redirect, setRedirect] = useState(false);
 
-    const { isLoaded, isSignedIn, user } = useUser();
+    const { user } = useUser();
 
     const [text, setText] = useState('')
 
@@ -44,6 +45,7 @@ const Post = (props: any) => {
 
     const userFilter = (x: string) => {
         if (user) {
+
             if (user.username? x = user.username : '') return x
             if (user.firstName? x = user.firstName : '') return x
             if (user.lastName? x = user.lastName : '') return x
@@ -59,20 +61,31 @@ const Post = (props: any) => {
 
     return (
 
-        <section className="bg-base-200 min-h-screen flex place-items-center">
+        <motion.section transition={{ duration: 1.0 }} initial={{ y: 30 }} animate={{ y: 0 }} className="bg-base-200 min-h-screen flex place-items-center">
             <div className="container px-6 py-10 mx-auto place-items-center flex flex-col">
-                <div className="lg:-mx-6 lg:flex lg:items-center">
+                <div className="lg:-mx-6 lg:flex lg:items-center ">
                     <img className="object-contain object-center drop-shadow-lg lg:w-1/2 lg:mx-6 w-full h-96 rounded-lg lg:h-[36rem]" src={props.post.image !== '' ? `${props.post.image}` : '../jamescape.png'} alt="" />
                     <div className="mt-8 lg:w-1/2 lg:px-6 lg:mt-0 pb-24">
-                        <p className="text-5xl font-semibold text-primary ">“</p>
-
-                        <h1 className="text-2xl font-semibold text-primary xl:text-4xl lg:w-96">
+                        <div className="flex justify-center place-items-center">
+                        
+                        <motion.img 
+                        className="flex rotate-45 w-1/2 max-w-[100px]" 
+                        src="/sword.png"
+                        initial={{ rotateZ: 720, x: '-1000px'}}
+                        animate={{ rotateZ: 0, x: '10px' }}
+                        transition={{ duration: 0.5 }}
+                        />
+                        <h1 className="text-5xl relative flex text-center font-semibold text-primary xl:text-4xl lg:w-96">
                             {props.post.title}
                         </h1>
-                        <h3 className="mt-6 text-lg font-medium text-primary">{props.post.category}</h3>
+                        
+
+                        
+                        </div>
+                        <h3 className="mt-6 w-fit bg-primary text-green-300 px-4 rounded-md text-lg font-medium">{props.post.category}</h3>
                         <p className="text-secondary dark:text-gray-300">legault432</p>
 
-                        <p className="max-w-lg mt-6 text-gray-800">
+                        <p className="max-w-lg w-full mt-6 text-gray-800 bg-white p-4 rounded-lg">
                             {props.post.body}
                         </p>
                     </div>
@@ -114,22 +127,21 @@ const Post = (props: any) => {
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 text-center">
                             
 
-                            {!isLoaded || !isSignedIn ? (
+                    
 
-                                <SignedOut>
-                                    <button onClick={() => setRedirect(true)} className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Sign In</button>
-                                </SignedOut>
-                            )
-                            :
-                            (
+                                
+
                                 <SignedIn>
                                     <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Post</button>
                                 </SignedIn>
-                            )}
+                            
                             {redirect && <RedirectToSignIn />}
                         </div>
                         </div>
                     </form>
+                    <SignedOut>
+                        <button onClick={() => setRedirect(true)} className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Sign In</button>
+                    </SignedOut>
                     
                 </div>
                 <div className="w-full flex flex-col place-items-center gap-4  pb-24">
@@ -145,7 +157,7 @@ const Post = (props: any) => {
                     })}
                 </div>
             </div>
-        </section>
+        </motion.section>
     
     )
 }

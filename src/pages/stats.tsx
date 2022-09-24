@@ -12,34 +12,34 @@ const Stats: NextPage = (props: any) => {
 
     return (
         <div className="w-full flex flex-col bg-base-200 place-items-center justify-center min-h-screen">
-        <div className="flex py-24 w-full bg-base-200">
-            <div className="mx-auto">
-                <div className="min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
+        <div className="flex bg-cover bg-no-repeatt py-24 w-full bg-base-200" style={{ backgroundImage: `url('./statbg.png')` }}>
+            <div className="mx-auto ">
+                <div className="min-w-0 break-words bg-white/20 backdrop-blur-md w-full mb-6 shadow-lg rounded-xl mt-16">
                     <div className="px-6">
                         <div className="flex flex-wrap justify-center">
                             <div className="w-full flex justify-center">
                                 <div className="relative">
-                                    <img src="./legault432.png" className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"/>
+                                    <img src="./legault432.png" className="shadow-xl border-2 border-white rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"/>
                                 </div>
                             </div>
                             <div className="w-full text-center mt-20">
                                 <div className="flex justify-center lg:pt-4 pt-8 pb-0">
                                     <div className="p-3 text-center">
-                                        <span className="text-xl font-bold block uppercase tracking-wide text-slate-700">{props.level}</span>
-                                        <span className="text-sm text-slate-400">Combat Level</span>
+                                        <span className="text-xl font-bold block uppercase tracking-wide text-white">{props.level}</span>
+                                        <span className="text-sm">Combat Level</span>
                                     </div>
                                     <div className="p-3 text-center">
-                                        <span className="text-xl font-bold block uppercase tracking-wide text-slate-700">{props.account}</span>
-                                        <span className="text-sm text-slate-400">Account Type</span>
+                                        <span className="text-xl font-bold block uppercase tracking-wide text-white">{props.account}</span>
+                                        <span className="text-sm">Account Type</span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                         <div className="text-center mt-2">
-                            <h3 className="text-2xl font-bold leading-normal mb-1 text-primary">{props.username}</h3>
+                            <h3 className="text-2xl font-bold leading-normal mb-1 text-white">{props.username}</h3>
                             <div className="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
-                                <i className="fas fa-map-marker-alt mr-2 text-slate-400 opacity-75"></i>{props.build} Account
+                                <i className="fas fa-map-marker-alt mr-2"></i>{props.build} Account
                             </div>
                         </div>
                         <div className="mt-6 py-6 border-t border-slate-200 text-center">
@@ -57,7 +57,7 @@ const Stats: NextPage = (props: any) => {
                 </div>
             </div>
         </div>
-        <div className="w-full pb-28 flex justify-center">
+        <div className="w-full pb-28 pt-12 flex justify-center">
         {seeStat === 'skill' && <Skilling props={props.skills} />}
         {seeStat === 'boss' && <Bossing props={props.bosses} />}
         {seeStat === 'clue' && <Clue props={props.clues} />}

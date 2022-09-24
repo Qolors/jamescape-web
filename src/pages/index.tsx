@@ -1,13 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { motion } from 'framer-motion'
 
 const Home: NextPage = () => {
 
   
 
   return (
-    <div className="w-full bg-base-200">
+    <motion.div>
+    <div className="w-full overflow-hidden bg-base-200">
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src="./jamescape.png" className="max-w-full object-contain rounded-lg drop-shadow-2xl" />
@@ -16,10 +18,14 @@ const Home: NextPage = () => {
           <p className="pt-1 pb-6 text-center font-medium opacity-60">A Solo Player Blog</p>
           <div className=" place-items-center gap-6 justify-center flex">
             <Link href='/posts'>
+              <motion.div  whileTap={{ scale: 0.8 }}>
               <button className="btn btn-primary px-6">Posts</button>
+              </motion.div>
             </Link>
             <Link href='/stats'>
+              <motion.div  whileTap={{ scale: 0.8 }}>
               <button className="btn btn-primary px-6">Stats</button>
+              </motion.div>
             </Link>
           </div>
         </div>
@@ -48,6 +54,7 @@ const Home: NextPage = () => {
     </div>
     </div>
     </div>
+    </motion.div>
   )
 }
 
