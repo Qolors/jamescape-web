@@ -17,7 +17,6 @@
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "runescape-api": "^2.1.6",
     "tailwindcss-neumorphism": "^0.1.0",
     "toastify-js": "^1.12.0",
     "zod": "^3.18.0"
