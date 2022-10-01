@@ -11,7 +11,7 @@ interface Obj {
 
 const Skilling = (props: any) => {
 
-    let skills: any = []
+    const skills: any = []
     
     
     Object.keys(props.props).forEach((key: any) => {
