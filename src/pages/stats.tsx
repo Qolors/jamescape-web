@@ -4,7 +4,7 @@ import { useState } from "react";
 import Skilling from "../components/skilling";
 import Bossing from "../components/bossing";
 import Clue from "../components/clue";
-import { runemetrics } from "runescape-api";
+import { runemetrics } from "../../node_modules/runescape-api";
 
 const Stats: NextPage = (props: any) => {
     //View Handler for Button On Toggle
