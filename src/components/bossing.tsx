@@ -9,9 +9,9 @@ const Bossing = (props: any) => {
   const [eligible, setEligible] = useState<string[]>([])
 
   useEffect(() => {
-    let transcomp : string[] = []
-    let transprog : string[] = []
-    let transelig : string[] = []
+    const transcomp : string[] = []
+    const transprog : string[] = []
+    const transelig : string[] = []
 
     props.props.map((p: any) => {
       if (p.status === "COMPLETED") {
