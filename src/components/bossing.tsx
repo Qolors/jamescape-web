@@ -13,7 +13,7 @@ const Bossing = (props: any) => {
     let transprog : string[] = []
     let transelig : string[] = []
 
-    props.props.map(p => {
+    props.props.map((p: any) => {
       if (p.status === "COMPLETED") {
         transcomp.push(p)
       }
