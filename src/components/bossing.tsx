@@ -1,57 +1,102 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { Icon } from '@iconify/react'
 
 const Bossing = (props: any) => {
 
-    const formatter = Intl.NumberFormat('en', { notation: 'compact'})
+  const [completed, setCompleted] = useState<string[]>([])
+  const [prog, setProg] = useState<string[]>([])
+  const [eligible, setEligible] = useState<string[]>([])
 
-    const trimmer = (x: string) => {
-        if (x.includes('_')){
-            const chop = x.replace('_', '');
-            return chop.charAt(0).toUpperCase() + chop.slice(1);
+  useEffect(() => {
+    let transcomp : string[] = []
+    let transprog : string[] = []
+    let transelig : string[] = []
+
+    props.props.map(p => {
+      if (p.status === "COMPLETED") {
+        transcomp.push(p)
+      }
+      else if (p.status === "STARTED") {
+        transprog.push(p)
+      }
+      else {
+        if (p.eligible) {
+          transelig.push(p)
         }
-        return x.charAt(0).toUpperCase() + x.slice(1);
-    }
+      }
+    })
+
+    setCompleted(transcomp)
+    setProg(transprog)
+    setEligible(transelig)
+
+
+  }, [])
 
   return (
-            <table className="sm:w-full md:w-1/2 lg:w-3/4 w-full table table-compact">
-                <thead>
-                <tr>
-                    <th>
-                    </th>
-                    <th>Boss</th>
-                    <th>Kills</th>
-                    <th>Rank</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    {props.props.map((s: any) => {
-                        const str = formatter.format(parseInt(s.boss.kills))
-                        const rstr = s.boss.rank.toLocaleString("en-US")
-                        if (s.boss.kills > 0){
-                        return(
-                        <tr className='bg-base-100'key={s.boss.name}>
-                            <th>
-                                <img className='min-w-[24px]' src={`https://wiseoldman.net/img/runescape/icons_small/${s.boss.name}.png`} />
-                            </th>
-                            <td>
-                                <div>{trimmer(s.boss.name)}</div>
-                            </td>
-                            <td>
-                                <div className='flex-col flex'>
-                                    {str}
-                                </div>
-                            </td>
-                            <td>
-                                <div>{rstr}</div>
-                            </td>
-                        </tr>
-                        )}
-                    })}
-                    
-                    
-                </tbody>
-            </table>
+    <div className='w-full flex flex-col place-items-center'>
+      <div className="w-3/4 stats stats-vertical lg:stats-horizontal shadow">
+        <div className='pr-6 w-full flex place-items-center'>
+        <div className="stat">
+          <div className="stat-title">Completed</div>
+          <div className="stat-value">{props.quest.complete}</div>
+        </div>
+        <Icon className='text-green-600' width="100" icon="line-md:check-list-3-filled" />
+        </div>
+        
+        <div className='pr-6 w-full flex place-items-center'>
+        <div className="stat">
+          <div className="stat-title">In Progress</div>
+          <div className="stat-value">{props.quest.started}</div>
+        </div>
+        <Icon className=' text-gray-500' width="100" icon="line-md:loading-alt-loop" />
+        </div>
+        
+        <div className='pr-6 w-full flex place-items-center'>
+        <div className="stat">
+          <div className="stat-title">Not Started</div>
+          <div className="stat-value">{props.quest.not_started}</div>
+        </div>
+        <Icon className=' text-gray-500' width="100" icon="line-md:search-twotone" />
+        </div>
+      </div>
+      <div className='overflow-x-auto pt-12'></div>
+        <table className='table w-full'>
+          <thead>
+            <tr>
+              <th className='text-lg'>Quest Name</th>
+              <th className='text-lg'>Quest Status</th>
+            </tr>
+          </thead>
+          <tbody className='overflow-hidden'>
+      {completed && completed.map(c => {
+        return (
+          <tr key={c.name} className='text-success'>
+            <td>{c.name}</td>
+            <td>Completed</td>
+          </tr>
+        )
+      })}
+      {prog && prog.map(c => {
+        return (
+          <tr key={c.name} className=' text-yellow-700'>
+            <td>{c.name}</td>
+            <td>Working On..</td>
+          </tr>
+        )
+      })}
+      {eligible && eligible.map(c => {
+        return (
+          <tr key={c.name} className='text-gray-600'>
+            <td className='max-w-[200px] break-all truncate ...'>{c.name}</td>
+            <td className=''>Eligible</td>
+          </tr>
+        )
+      })}
+          </tbody>
+        </table>
+    </div>
   )
 }
 

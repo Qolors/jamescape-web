@@ -35,9 +35,9 @@ const Home: NextPage = () => {
     <h2 className="font-bold text-primary pt-6 pb-6 text-5xl text-center justify-center flex bg-base-200">Updates</h2>
     <div className="flex pb-24 container bg-base-200 flex-col w-full lg:w-3/4 mx-auto border-opacity-50">
       <NewsPost
-        title="Account Swapping"
-        body="Working on Farming until new event"
-        date="05 Sep"
+        title="RS3 Event"
+        body="Starting a new RS3 account for event"
+        date="25 Sep"
       />
       <div className="divider"></div>
       <NewsPost

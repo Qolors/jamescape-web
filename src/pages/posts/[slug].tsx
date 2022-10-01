@@ -67,15 +67,7 @@ const Post = (props: any) => {
                     <img className="object-contain object-center drop-shadow-lg lg:w-1/2 lg:mx-6 w-full h-96 rounded-lg lg:h-[36rem]" src={props.post.image !== '' ? `${props.post.image}` : '../jamescape.png'} alt="" />
                     <div className="mt-8 lg:w-1/2 lg:px-6 lg:mt-0 pb-24">
                         <div className="flex justify-center place-items-center">
-                        
-                        <motion.img 
-                        className="flex rotate-45 w-1/2 max-w-[100px]" 
-                        src="/sword.png"
-                        initial={{ rotateZ: 720, x: '-1000px'}}
-                        animate={{ rotateZ: 0, x: '5px' }}
-                        transition={{ duration: 0.5 }}
-                        />
-                        <h1 className="text-5xl relative flex text-center font-semibold text-primary xl:text-4xl lg:w-96">
+                        <h1 className="text-5xl text-left w-full relative flex font-semibold text-primary xl:text-4xl lg:w-96">
                             {props.post.title}
                         </h1>
                         
@@ -83,7 +75,7 @@ const Post = (props: any) => {
                         
                         </div>
                         <h3 className="mt-6 w-fit bg-primary text-green-300 px-4 rounded-md text-lg font-medium">{props.post.category}</h3>
-                        <p className="text-secondary dark:text-gray-300">legault432</p>
+                        <p className="text-secondary dark:text-gray-300">An Okay Time</p>
 
                         <p className="max-w-lg w-full mt-6 text-gray-800 bg-white p-4 rounded-lg">
                             {props.post.body}
