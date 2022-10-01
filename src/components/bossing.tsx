@@ -70,7 +70,7 @@ const Bossing = (props: any) => {
             </tr>
           </thead>
           <tbody className='overflow-hidden'>
-      {completed && completed.map(c => {
+      {completed && completed.map((c: any) => {
         return (
           <tr key={c.name} className='text-success'>
             <td>{c.name}</td>
@@ -78,7 +78,7 @@ const Bossing = (props: any) => {
           </tr>
         )
       })}
-      {prog && prog.map(c => {
+      {prog && prog.map((c: any) => {
         return (
           <tr key={c.name} className=' text-yellow-700'>
             <td>{c.name}</td>
@@ -86,7 +86,7 @@ const Bossing = (props: any) => {
           </tr>
         )
       })}
-      {eligible && eligible.map(c => {
+      {eligible && eligible.map((c: any) => {
         return (
           <tr key={c.name} className='text-gray-600'>
             <td className='max-w-[200px] break-all truncate ...'>{c.name}</td>
