@@ -1,4 +1,6 @@
 import React from 'react'
+import SkillShow from './skillshow'
+
 
 interface Obj {
     name: string,
@@ -30,7 +32,8 @@ const Skilling = (props: any) => {
     }
 
   return (
-            <div className='w-full'>
+            <div className='w-full flex flex-col place-items-center'>
+                <SkillShow />
                 <div className='flex flex-col w-full'>
                     {skills.map((s: any) => {
                         

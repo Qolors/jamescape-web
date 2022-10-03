@@ -93,13 +93,13 @@ export const getStaticProps: GetStaticProps = async () => {
     //Update on Name Change request
     
     const player: any = await runemetrics.getProfile("an okay time").then(data => {
-        console.log(data)
+        
         return JSON.parse(JSON.stringify(data))
     })
     const quest: any = await runemetrics.getQuests("an okay time").then(data => {
         return JSON.parse(JSON.stringify(data))
     })
+
     return { props: { player, quest }, revalidate: 300 }
     
 }
-

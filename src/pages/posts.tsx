@@ -1,7 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { prisma } from "../server/db/client";
 import { motion } from 'framer-motion'
-import Image from "next/image";
+import { Icon } from "@iconify/react";
+
 
 const Posts: NextPage = (props: any) => {
 
@@ -13,16 +14,28 @@ const Posts: NextPage = (props: any) => {
 
         </div>
         <div className="w-full grid grid-cols-1 gap-12 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
-          {props.posts.map((p: any) =>
-           
-          <a key={p.id} href={`/posts/${p.id}`}>
+          {props.posts.map((p: any) => {
+
+          let c = 0;
+          props.comments.map((comment:any) => { if (comment.postid === p.id) return c = c + 1});
+
+          console.log(c)
+
+          return ( 
+          <>
+          <a key={p.id} href={`/posts/${p.id}`} className="relative">
             <TechnologyCard
               name={p.title}
               description={p.body}
               category={p.category}
               image={p.image ? p.image : './jamescape.png'}
             />
+            <div className="absolute top-8 right-0 py-2 px-4 bg-white rounded-xl flex gap-2 place-items-center"><Icon icon="bx:message-alt-detail" />{c}</div>
           </a>
+          
+          </>
+          )
+          }
           )}
         </div>
       </div>
@@ -69,5 +82,7 @@ const TechnologyCard = ({
 export const getServerSideProps: GetServerSideProps = async () => {
   const unsorted = await prisma.posts.findMany();
   const posts = unsorted.reverse()
-  return { props: { posts } }
+  const comments = await prisma.comment.findMany();
+
+  return { props: { posts, comments } }
 }
