@@ -1,8 +1,6 @@
-import { useState } from "react";
+
 
 const SkillShow: React.FC = () => {
-
-    const [skill, setSkill] = useState<[]>([])
 
     return (
         <div className="form-control py-6">
@@ -37,7 +35,7 @@ const SkillShow: React.FC = () => {
             <option value={26} >Invention</option>
             <option value={27} >Archaeology</option>
             </select>
-            <button onClick={() => getStats()} className="btn">Go</button>
+            <button className="btn">Go</button>
         </div>
         </div>
     )
