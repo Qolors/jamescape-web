@@ -5,6 +5,7 @@ import Skilling from "../components/skilling";
 import Bossing from "../components/bossing";
 import Clue from "../components/clue";
 import { runemetrics } from "runescape-api";
+import { prisma } from "../server/db/client";
 
 const Stats: NextPage = (props: any) => {
     //View Handler for Button On Toggle
@@ -88,11 +89,48 @@ const Stats: NextPage = (props: any) => {
 
 export default Stats;
 
-
 export const getStaticProps: GetStaticProps = async () => {
     //Update on Name Change request
     
     const player: any = await runemetrics.getProfile("an okay time").then(data => {
+
+        Object.keys(data.skills).forEach(async (s: string) => {
+    
+            const skills = await prisma?.skill.findUnique({
+                where: {
+                    name: s,
+                }
+            });
+    
+            if (skills) {
+                // 👇️ ts-nocheck ignores all ts errors in the file
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+                skills.exp.push(String(data.skills[s].experience))
+                const oldSkill = await prisma?.skill.update({
+                    where: {
+                        name: s,
+                    },
+                    data: {
+                        exp: skills.exp
+                    }
+                })
+                console.log(oldSkill.exp)
+            } else {
+                const createSkill = await prisma?.skill.create({
+                    data: {
+                        name: s,
+                        // 👇️ ts-nocheck ignores all ts errors in the file
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+                        exp: [String(data.skills[s].experience)]
+                    }
+                })
+                console.log(createSkill)
+            }
+        })
         
         return JSON.parse(JSON.stringify(data))
     })
@@ -100,6 +138,11 @@ export const getStaticProps: GetStaticProps = async () => {
         return JSON.parse(JSON.stringify(data))
     })
 
-    return { props: { player, quest }, revalidate: 300 }
+    
+    
+
+
+
+    return { props: { player, quest }, revalidate: 600 }
     
 }

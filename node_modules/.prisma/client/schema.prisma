@@ -24,3 +24,9 @@ model comment {
   author   String
   content  String
 }
+
+model skill {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String @unique
+  exp      String[]
+}
