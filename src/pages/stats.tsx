@@ -107,7 +107,7 @@ export const getStaticProps: GetStaticProps = async () => {
                 // 👇️ ts-nocheck ignores all ts errors in the file
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-                skills.exp.push(String(data.skills[s].experience))
+                skills.exp.push(String(data.skills[s].experience)) // eslint-disable-line no-use-before-define
                 const oldSkill = await prisma?.skill.update({
                     where: {
                         name: s,
@@ -122,10 +122,9 @@ export const getStaticProps: GetStaticProps = async () => {
                     data: {
                         name: s,
                         // 👇️ ts-nocheck ignores all ts errors in the file
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-                        exp: [String(data.skills[s].experience)]
+                        exp: [String(data.skills[s].experience)] // eslint-disable-line no-use-before-define
                     }
                 })
                 console.log(createSkill)
