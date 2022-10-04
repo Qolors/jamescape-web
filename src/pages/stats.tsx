@@ -6,7 +6,6 @@ import Bossing from "../components/bossing";
 import Clue from "../components/clue";
 import { runemetrics } from "runescape-api";
 import { prisma } from "../server/db/client";
-import { RuneScape } from "runescape-api/types";
 
 const Stats: NextPage = (props: any) => {
     //View Handler for Button On Toggle

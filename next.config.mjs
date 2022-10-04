@@ -18,5 +18,9 @@ export default defineNextConfig({
   swcMinify: true,
   images: {
     domains: ['wiseoldman.net']
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
 });
