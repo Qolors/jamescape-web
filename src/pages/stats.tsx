@@ -6,6 +6,7 @@ import Bossing from "../components/bossing";
 import Clue from "../components/clue";
 import { runemetrics } from "runescape-api";
 import { prisma } from "../server/db/client";
+import { RuneScape } from "runescape-api/types";
 
 const Stats: NextPage = (props: any) => {
     //View Handler for Button On Toggle
@@ -106,7 +107,7 @@ export const getStaticProps: GetStaticProps = async () => {
                 // 👇️ ts-nocheck ignores all ts errors in the file
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-
+// @ts-ignore
                 skills.exp.push(String(data.skills[s].experience))
                 const oldSkill = await prisma?.skill.update({
                     where: {
@@ -124,6 +125,7 @@ export const getStaticProps: GetStaticProps = async () => {
                         // 👇️ ts-nocheck ignores all ts errors in the file
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+//@ts-ignore
 
                         exp: [String(data.skills[s].experience)]
                     }
