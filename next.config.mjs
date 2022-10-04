@@ -19,8 +19,8 @@ export default defineNextConfig({
   images: {
     domains: ['wiseoldman.net']
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  typescript: {
+    ignoreBuildErrors: true,
+  }
 
 });
