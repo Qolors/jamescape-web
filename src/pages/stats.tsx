@@ -136,6 +136,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 
-    return { props: { player, quest }, revalidate: 600 }
+    return { props: { player, quest }, revalidate: 1200 }
     
 }
