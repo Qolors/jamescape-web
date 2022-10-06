@@ -1,16 +1,14 @@
 import "../styles/globals.css";
 import type { AppType } from "next/dist/shared/lib/utils";
 import Nav from "../components/navbar";
-import { ClerkProvider } from "@clerk/nextjs";
 import TopNav from "../components/topnav";
 import { AnimatePresence, motion } from 'framer-motion'
+import { SessionProvider } from 'next-auth/react'
 
-const frontEndApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 
-
-const MyApp: AppType = ({ Component, pageProps, router }) => {
+const MyApp: AppType = ({ Component, pageProps: {session, ...pageProps}, router }) => {
   return (
-    <ClerkProvider frontendApi={frontEndApi}>
+    <SessionProvider session={session}>
       <div>
         <TopNav />
         <Nav />
@@ -20,7 +18,7 @@ const MyApp: AppType = ({ Component, pageProps, router }) => {
           </motion.div>
         </AnimatePresence>
       </div>
-    </ClerkProvider>
+    </SessionProvider>
   )
 };
 

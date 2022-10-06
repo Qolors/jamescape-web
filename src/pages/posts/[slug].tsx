@@ -2,7 +2,7 @@ import { prisma } from "../../server/db/client";
 import { GetServerSideProps } from "next";
 import CommentBox from "../../components/comment";
 import { useEffect, useState } from "react";
-import { SignedIn, RedirectToSignIn, SignedOut, useUser } from '@clerk/nextjs'
+import { signIn, useSession } from "next-auth/react";
 import Toastify from 'toastify-js'
 import { motion } from 'framer-motion'
 
@@ -14,14 +14,13 @@ type Comments = {
 
 }
 
-
-
 const Post = (props: any) => {
 
-    const [list, setList] = useState([])
-    const [redirect, setRedirect] = useState(false);
+    const { data: session } = useSession();
 
-    const { user } = useUser();
+    const [list, setList] = useState([])
+
+    const { user } = session;
 
     const [text, setText] = useState('')
 
@@ -42,19 +41,6 @@ const Post = (props: any) => {
     useEffect(() => {
         setList(props.comments)
     }, [])
-
-    const userFilter = (x: string) => {
-        if (user) {
-
-            if (user.username? x = user.username : '') return x
-            if (user.firstName? x = user.firstName : '') return x
-            if (user.lastName? x = user.lastName : '') return x
-            if (user.fullName? x = user.fullName : '') return x
-            
-        }
-        x = "RuneScape Lover"
-        return x
-    }
 
     
 
@@ -87,7 +73,7 @@ const Post = (props: any) => {
                     <form onSubmit={(e) => {
                         if (text == '') return
                         const x = ''
-                        const setter: Comments = { content: text, author: userFilter(x), post: props.post.id}
+                        const setter: Comments = { content: text, author: user?.name, post: props.post.id}
                         postHandler(setter)
                         setText('');
                         Toastify({
@@ -120,20 +106,11 @@ const Post = (props: any) => {
                             
 
                     
-
-                                
-
-                                <SignedIn>
-                                    <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Post</button>
-                                </SignedIn>
-                            
-                            {redirect && <RedirectToSignIn />}
+                            {session ? <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Post</button> : <button onClick={() => signIn('discord')} className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Sign In</button>}
+                        
                         </div>
                         </div>
                     </form>
-                    <SignedOut>
-                        <button onClick={() => setRedirect(true)} className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Sign In</button>
-                    </SignedOut>
                     
                 </div>
                 <div className="w-full flex flex-col place-items-center gap-4  pb-24">
@@ -156,6 +133,8 @@ const Post = (props: any) => {
 
 
 export default Post;
+
+
 
 export const getServerSideProps: GetServerSideProps = async (pageContext: any) => {
 

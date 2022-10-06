@@ -2,10 +2,11 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { motion } from 'framer-motion'
+import { GetServerSideProps } from "next";
+import { prisma } from "../server/db/client";
+import { ResponsiveRadar } from '@nivo/radar'
 
-const Home: NextPage = () => {
-
-  
+const Home: NextPage = (props: any) => {
 
   return (
     <motion.div>
@@ -92,3 +93,37 @@ const NewsPost = ({
     </>
   )
 }
+
+
+export interface TopSkill {
+  [key: string]: number
+}
+
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+  const levels = await prisma.skill.findMany();
+
+      const props: TopSkill = {}
+
+      levels.map(l => {
+
+          const x = l.name;
+
+          let length = (l.exp.length - 1);
+
+          let latest = Number(l.exp[length])
+          let last = Number(l.exp[length - 1])
+
+          if (latest > last) {
+
+              const change = latest - last;
+
+              props[x] = change;
+          }
+      })
+
+      console.log(props);
+
+      return { props }
+    }

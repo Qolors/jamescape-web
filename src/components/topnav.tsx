@@ -1,34 +1,15 @@
 
-
-import { RedirectToSignIn, RedirectToUserProfile, SignedIn, SignedOut, UserProfile, useUser } from "@clerk/nextjs"
-import { useEffect, useState } from "react"
+import { useSession } from "next-auth/react";
 import Link from "next/link"
 
 
 const TopNav = () => {
 
-    const [sign, setSign] = useState(false)
-    const [profile, setProfile] = useState(false)
-    const [username, Setusername] = useState('')
+    const { data: session } = useSession();
 
-    const { user } = useUser();
-
-    useEffect(() => {
-
-        if (user) {
-            
-            let x = ''
-            
-            if (user.username? x = user.username : '') Setusername(x)
-            if (user.firstName? x = user.firstName : '') Setusername(x)
-            if (user.lastName? x = user.lastName : '') Setusername(x)
-            if (user.fullName? x = user.fullName : '') Setusername(x)
-            
-        }
-
-    }, [user])
+    if (session) {
         
-    
+    const { user } = session;
 
     return (
         <div className="navbar bg-neutral text-base-200">
@@ -37,20 +18,18 @@ const TopNav = () => {
         </div>
         <div className="flex-none">
             <ul className="menu menu-horizontal p-0">
-                <SignedIn>
-                    <li><a className="p-2 bg-neutral font-bold text-sm" onClick={() => {setProfile(true)}}>{username}.</a></li>
-                </SignedIn>
+                {user?.image && (
+                    <li><a className="p-2 bg-neutral font-bold text-sm">Hey {user?.name} <img className="w-[30px]" src={user.image} /></a></li>
+                )}
+                    
+
                 
 
             </ul>
         </div>
-        {sign &&  <RedirectToSignIn />}
-        {profile && <RedirectToUserProfile />}
-        <SignedOut>
-                    <li><button className="btn btn-square" onClick={() => setSign(true)}>Sign In</button></li>
-                </SignedOut>
         </div>
     )
+    }
 }
 
 export default TopNav
