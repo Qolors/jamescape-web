@@ -110,10 +110,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
           const x = l.name;
 
-          let length = (l.exp.length - 1);
+          const length = (l.exp.length - 1);
 
-          let latest = Number(l.exp[length])
-          let last = Number(l.exp[length - 1])
+          const latest = Number(l.exp[length])
+          const last = Number(l.exp[length - 1])
 
           if (latest > last) {
 

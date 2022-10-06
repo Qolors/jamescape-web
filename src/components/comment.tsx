@@ -2,6 +2,7 @@
 
 const CommentBox = (author: any) => {
     
+    
     return (
         
         <div className="rounded-xl card w-full max-w-[500px] bg-base-100 shadow-xl">
