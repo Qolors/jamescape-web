@@ -1,5 +1,5 @@
 
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import Link from "next/link"
 
 
@@ -29,6 +29,21 @@ const TopNav = () => {
         </div>
         </div>
     )
+    } else {
+        return (
+
+            <div className="navbar bg-neutral text-base-200">
+            <div className="flex-1 px-4">
+                <Link href="/" className="btn btn-ghost normal-case text-xl">JS</Link>
+            </div>
+            <div className="flex-none">
+                <ul className="menu menu-horizontal p-0">
+                        <li><button className="btn" onClick={() => signIn('discord')} /></li>
+                </ul>
+            </div>
+            </div>
+
+        )
     }
 }
 
