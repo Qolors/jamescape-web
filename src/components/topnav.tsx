@@ -34,11 +34,11 @@ const TopNav = () => {
 
             <div className="navbar bg-neutral text-base-200">
             <div className="flex-1 px-4">
-                <Link href="/" className="btn btn-ghost normal-case text-xl">JS</Link>
+                <Link href="/" className="btn btn-ghost normal-case text-white text-xl">JS</Link>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal p-0">
-                        <li><button className="btn" onClick={() => signIn('discord')} /></li>
+                        <li><button className="btn" onClick={() => signIn('discord')}>Sign In</button></li>
                 </ul>
             </div>
             </div>

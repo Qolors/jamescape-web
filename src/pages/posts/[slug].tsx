@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 
 type Comments = {
     content: string,
-    author: string,
+    author: any,
     post: string,
 
 
@@ -19,8 +19,6 @@ const Post = (props: any) => {
     const { data: session } = useSession();
 
     const [list, setList] = useState([])
-
-    const { user } = session;
 
     const [text, setText] = useState('')
 
@@ -42,6 +40,9 @@ const Post = (props: any) => {
         setList(props.comments)
     }, [])
 
+    
+    if (session) { 
+        const { user } = session;
     
 
 
@@ -73,7 +74,7 @@ const Post = (props: any) => {
                     <form onSubmit={(e) => {
                         if (text == '') return
                         const x = ''
-                        const setter: Comments = { content: text, author: user?.name, post: props.post.id}
+                        const setter: Comments = { content: text, author: user ? user.name : 'RuneScape Lover', post: props.post.id}
                         postHandler(setter)
                         setText('');
                         Toastify({
@@ -127,8 +128,20 @@ const Post = (props: any) => {
                 </div>
             </div>
         </motion.section>
+
+                )} else {
+                    return (
+                        <div className="flex justify-center place-items-center h-screen w-screen">
+                            
+                                <button className="btn-ghost btn-md bg-primary text-white" onClick={() => signIn('discord')}>Sign In</button>
+
+                        </div>
+                        
+                    )
+                }
+
     
-    )
+    
 }
 
 
