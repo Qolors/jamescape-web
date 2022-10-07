@@ -6,6 +6,7 @@ import Bossing from "../components/bossing";
 import Clue from "../components/clue";
 import { runemetrics } from "runescape-api";
 import { prisma } from "../server/db/client";
+import { miscellaneous } from "runescape-api";
 
 const Stats: NextPage = (props: any) => {
     //View Handler for Button On Toggle
@@ -22,8 +23,8 @@ const Stats: NextPage = (props: any) => {
                     <div className="px-6">
                         <div className="flex flex-wrap justify-center">
                             <div className="w-full flex justify-center">
-                                <div className="relative">
-                                    <img src="./legault432.png" className="shadow-xl border-2 border-white rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"/>
+                                <div className="relative justify-center flex">
+                                    <img src={props.avatar} className=" drop-shadow-lg border-2 border-white rounded-full align-middle border-none absolute max-w-[200px]"/>
                                 </div>
                             </div>
                             <div className="w-full text-center mt-20">
@@ -131,11 +132,15 @@ export const getStaticProps: GetStaticProps = async () => {
         return JSON.parse(JSON.stringify(data))
     })
 
+    const avatar: any = await miscellaneous.getAvatar("an okay time").then(data => {
+        return data
+    })
+
     
     
 
 
 
-    return { props: { player, quest }, revalidate: 1200 }
+    return { props: { player, quest, avatar }, revalidate: 1200 }
     
 }

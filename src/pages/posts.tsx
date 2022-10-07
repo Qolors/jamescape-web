@@ -8,9 +8,8 @@ const Posts: NextPage = (props: any) => {
 
   return (
       <div className="w-full bg-base-200 pb-24 flex flex-col items-center justify-center min-h-screen">
-        <div className="flex overflow-hidden px-2 w-full place-items-end mb-4 justify-center">
-        <p className="text-6xl lg:text-8xl -right-2 font-bold text-primary relative -bottom-2 flex">Feed.</p>
-        <img className="w-[100px] lg:w-[150px] drop-shadow-2xl relative -bottom-1" src="./post2.png" />
+        <div className="flex overflow-hidden w-full place-items-end mb-4 justify-center">
+        <img className="w-full relative" src="./posts3.gif" />
 
         </div>
         <div className="w-full grid grid-cols-1 gap-12 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
