@@ -12,14 +12,14 @@ const TopNav = () => {
     const { user } = session;
 
     return (
-        <div className="navbar bg-neutral text-base-200">
+        <div className="navbar bg-stone-800 text-secondary">
         <div className="flex-1 px-4">
             <Link href="/" className="btn btn-ghost normal-case text-xl">JS</Link>
         </div>
         <div className="flex-none">
             <ul className="menu menu-horizontal p-0">
                 {user?.image && (
-                    <li><a className="p-2 bg-neutral font-bold text-sm">Hey {user?.name} <img className="w-[30px]" src={user.image} /></a></li>
+                    <li><a className="p-2 bg-stone-800 font-bold text-sm">Hey {user?.name} <img className="w-[30px]" src={user.image} /></a></li>
                 )}
                     
 

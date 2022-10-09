@@ -7,6 +7,6 @@ module.exports = {
   plugins: [require("daisyui"), require('tailwindcss-neumorphism')],
   daisyui: {
     styled: true,
-    themes: ['lofi']
+    themes: ['cyberpunk'],
   }
 };

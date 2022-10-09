@@ -2,6 +2,8 @@ import React from 'react'
 
 const Clue = (props: any) => {
 
+    
+
   return (
             <div className='w-full flex flex-col gap-2 place-items-center'>
                 {props.props.map((p: any) => {

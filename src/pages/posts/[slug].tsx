@@ -49,28 +49,34 @@ const Post = (props: any) => {
     return (
 
         <motion.section transition={{ duration: 1.0 }} initial={{ y: 30 }} animate={{ y: 0 }} className="bg-base-200 min-h-screen flex place-items-center">
-            <div className="container px-6 py-10 mx-auto place-items-center flex flex-col">
-                <div className="lg:-mx-6 lg:flex lg:items-center ">
-                    <img className="object-contain object-center drop-shadow-lg lg:w-1/2 lg:mx-6 w-full h-96 rounded-lg lg:h-[36rem]" src={props.post.image !== '' ? `${props.post.image}` : '../jamescape.png'} alt="" />
-                    <div className="mt-8 lg:w-1/2 lg:px-6 lg:mt-0 pb-24">
-                        <div className="flex justify-center place-items-center">
-                        <h1 className="text-5xl text-left w-full relative flex font-semibold text-primary xl:text-4xl lg:w-96">
-                            {props.post.title}
-                        </h1>
+            <div className="container px-6 py-10 mx-auto flex flex-col">
+                <div className="lg:-mx-6 lg:items-center w-full flex flex-col place-items-center overflow-x-hidden">
+                    <h1 className="text-4xl text-left w-full relative flex font-semibold text-stone-800 xl:text-4xl">
+                        {props.post.title}
+                    </h1>
+                    
+                    <div className="lg:w-full flex flex-col lg:mt-0 gap-4 pt-2">
+                        <div className="flex w-full">
+                        
+                        <img className="object-contain drop-shadow-lg w-full max-h-[1080px] rounded-lg" src={props.post.image !== '' ? `${props.post.image}` : '../jamescape.png'} alt="" />
                         
 
                         
                         </div>
-                        <h3 className="mt-6 w-fit bg-primary text-green-300 px-4 rounded-md text-lg font-medium">{props.post.category}</h3>
-                        <p className="text-secondary dark:text-gray-300">An Okay Time</p>
+                        <div className="flex w-full place-items-center gap-2">
+                        <h3 className="w-fit bg-stone-800 text-green-300 px-4 rounded-md text-lg shadow-xl font-medium">{props.post.category}</h3>
+                        <p className="w-fit bg-stone-800 text-green-300 px-4 rounded-md text-lg shadow-xl font-medium">An Okay Time</p>
+                        </div>
+                        
+                        
 
-                        <p className="max-w-lg w-full mt-6 text-gray-800 bg-white p-4 rounded-lg">
+                        <p className="w-full mt-6 text-gray-800 p-4 lg:text-lg rounded-lg">
                             {props.post.body}
                         </p>
                     </div>
                 </div>
                 <div className="flex pb-24 flex-col gap-4 place-items-center pt-24 max-w-[500px]">
-                    <h1 className="text-xl xl:text-3xl lg:text-2xl">Comments</h1>
+                    
                     <form onSubmit={(e) => {
                         if (text == '') return
                         const x = ''
@@ -112,10 +118,11 @@ const Post = (props: any) => {
                         </div>
                         </div>
                     </form>
+                    <h1 className="text-xl xl:text-3xl lg:text-2xl">Comments</h1>
                     
                 </div>
-                <div className="w-full flex flex-col place-items-center gap-4  pb-24">
-                {list && list.map((p: any) => {
+                <div className="w-full flex flex-col gap-4  pb-24">
+                {list.length ? list.map((p: any) => {
                         const content: string = p.content
                         const author: string = p.author
 
@@ -123,8 +130,8 @@ const Post = (props: any) => {
                             
                             <CommentBox key={p.id} content={content} author={author} />
                             
-                            )
-                    })}
+                            ) 
+                    }): <><h2 className=" text-sm opacity-75 text-center">Nothing to see here</h2></>}
                 </div>
             </div>
         </motion.section>

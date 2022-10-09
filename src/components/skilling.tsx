@@ -37,7 +37,7 @@ const Skilling = (props: any) => {
                         
                         const str = formatter.format(parseInt(s.experience))
                         return(
-                            <div key={s.name}>
+                            <div className='w-full px-6' key={s.name}>
                             <div className="flex justify-end gap-12 px-2 bg-base-200 rounded-box place-items-center">
                                 <div className='flex'>
                                 {s.name != 'overall' ? <img className='flex max-w-[45px]' src={`https://runescape.wiki/images/${trimmer(s.name)}.png`} /> : <></>}
