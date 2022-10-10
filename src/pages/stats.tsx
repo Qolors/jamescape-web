@@ -94,40 +94,9 @@ export const getStaticProps: GetStaticProps = async () => {
     //Update on Name Change request
     
     const player: any = await runemetrics.getProfile("an okay time").then(data => {
-
-        Object.keys(data.skills).forEach(async (s: string) => {
-    
-            const skills = await prisma?.skill.findUnique({
-                where: {
-                    name: s,
-                }
-            });
-    
-            if (skills) {
-                skills.exp.push(String(data.skills[s].experience)) // eslint-disable-line no-use-before-define
-                const oldSkill = await prisma?.skill.update({
-                    where: {
-                        name: s,
-                    },
-                    data: {
-                        exp: skills.exp
-                    }
-                })
-                console.log(oldSkill.exp)
-            } else {
-                const createSkill = await prisma?.skill.create({
-                    data: {
-                        name: s,
-
-                        exp: [String(data.skills[s].experience)] // eslint-disable-line no-use-before-define
-                    }
-                })
-                console.log(createSkill)
-            }
-        })
-        
         return JSON.parse(JSON.stringify(data))
     })
+
     const quest: any = await runemetrics.getQuests("an okay time").then(data => {
         return JSON.parse(JSON.stringify(data))
     })
