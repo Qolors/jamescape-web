@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const Skilling = (props: any) => {
 
-    const [skills, setSkills] = useState<Object>([])
+    const [skills, setSkills] = useState<any>([])
     
     useEffect(() => {
         const x = [];
