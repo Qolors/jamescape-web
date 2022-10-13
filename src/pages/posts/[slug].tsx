@@ -79,7 +79,7 @@ const Post = (props: any) => {
                     
                     <form onSubmit={(e) => {
                         if (text == '') return
-                        const x = ''
+                        
                         const setter: Comments = { content: text, author: user ? user.name : 'RuneScape Lover', post: props.post.id}
                         postHandler(setter)
                         setText('');

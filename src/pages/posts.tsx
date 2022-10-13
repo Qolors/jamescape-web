@@ -1,5 +1,4 @@
 import type { GetServerSideProps, NextPage } from "next";
-import Image from "next/image";
 import { prisma } from "../server/db/client";
 import { motion } from 'framer-motion'
 import { Icon } from "@iconify/react";
@@ -26,7 +25,7 @@ const Posts: NextPage = (props: any) => {
           <a key={p.id} href={`/posts/${p.id}`} className="relative">
             <TechnologyCard
               name={p.title}
-              description={p.body}
+              description={p.body ? p.body : ''}
               category={p.category}
               image={p.image ? p.image : './jamescape.png'}
             />
