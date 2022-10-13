@@ -5,7 +5,6 @@ import Skilling from "../components/skilling";
 import Bossing from "../components/bossing";
 import Clue from "../components/clue";
 import { runemetrics } from "runescape-api";
-import { prisma } from "../server/db/client";
 import { miscellaneous } from "runescape-api";
 
 const Stats: NextPage = (props: any) => {
@@ -79,7 +78,7 @@ const Stats: NextPage = (props: any) => {
             </div>
         </div>
         <div className="w-full pb-28 pt-12 flex justify-center">
-        {seeStat === 'skill' && <Skilling props={props.player.skills} />}
+        {seeStat === 'skill' && <Skilling props={props.fixStats.skillvalues} />}
         {seeStat === 'boss' && <Bossing quest={props.player.quests}  props={props.quest} />}
         {seeStat === 'clue' && <Clue  props={props.player.activities} />}
         </div>
@@ -105,11 +104,16 @@ export const getStaticProps: GetStaticProps = async () => {
         return data
     })
 
+    const fixStats: any = await fetch("https://apps.runescape.com/runemetrics/profile/profile?user=an%20okay%20time&activities=20").then(response => {
+        const movies = response.json()
+        return movies
+    })
+
     
     
 
 
 
-    return { props: { player, quest, avatar }, revalidate: 1200 }
+    return { props: { player, quest, avatar, fixStats }, revalidate: 1200 }
     
 }

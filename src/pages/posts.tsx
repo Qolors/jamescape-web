@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from "next";
+import Image from "next/image";
 import { prisma } from "../server/db/client";
 import { motion } from 'framer-motion'
 import { Icon } from "@iconify/react";

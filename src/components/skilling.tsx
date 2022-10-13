@@ -1,48 +1,39 @@
-import React from 'react'
-
-
-interface Obj {
-    name: string,
-    rank: string,
-    level: string,
-    experience: string
-}
+import React, { useEffect, useState } from 'react'
 
 const Skilling = (props: any) => {
 
-    const skills: any = []
+    const [skills, setSkills] = useState<Object>([])
     
-    
-    Object.keys(props.props).forEach((key: any) => {
-        const obj: Obj = {
-            name: key,
-            rank: props.props[key]['rank'],
-            level: props.props[key]['level'],
-            experience: props.props[key]['experience']
-
+    useEffect(() => {
+        let x = [];
+        for (var object in props.props) {
+            x.push(props.props[object])
         }
-        skills.push(obj)
+        x.sort(function(a, b) {return a.id - b.id})
 
-    })
+        setSkills(x);
+        
+    }, [])
+
+
+
     const formatter = Intl.NumberFormat('en', { notation: 'compact'})
-
-    const trimmer = (scout: string) => {
-        return scout.charAt(0).toUpperCase() + scout.slice(1);
-    }
 
   return (
             <div className='w-full flex flex-col place-items-center'>
                 <div className='flex flex-col w-full'>
-                    {skills.map((s: any) => {
+                    {skills.map((s: Object) => {
+
+                        let x: number = s.id
                         
-                        const str = formatter.format(parseInt(s.experience))
+                        const str = formatter.format(parseInt(s.xp))
                         return(
-                            <div className='w-full px-6' key={s.name}>
+                            <div className='w-full px-6' key={x}>
                             <div className="flex justify-end gap-12 px-2 bg-base-200 rounded-box place-items-center">
                                 <div className='flex'>
-                                {s.name != 'overall' ? <img className='flex max-w-[45px]' src={`https://runescape.wiki/images/${trimmer(s.name)}.png`} /> : <></>}
+                                <img className='flex max-w-[45px]' src={`https://runescape.wiki/images/${fer[x]}.png`} />
                                 </div>
-                                <p className='w-full text-center'>{trimmer(s.name)}</p>
+                                <p className='w-full text-center'>{fer[x]}</p>
                                 <div className='flex flex-col'>
                                     <p>{str}</p>
                                     <p className=' text-gray-400'>Xp.</p>
@@ -65,3 +56,38 @@ const Skilling = (props: any) => {
 }
 
 export default Skilling;
+
+interface Fer {
+    [index: number]: string
+}
+
+export const fer: Fer = {
+    0: "Attack",
+    1: "Defence",
+    2: "Strength",
+    3: "Constitution",
+    4: "Ranged",
+    5: "Prayer",
+    6: "Magic",
+    7: "Cooking",
+    8: "Woodcutting",
+    9: "Fletching",
+    10: "Fishing",
+    11: "Firemaking",
+    12: "Crafting",
+    13: "Smithing",
+    14: "Mining",
+    15: "Herblore",
+    16: "Agility",
+    17: "Thieving",
+    18: "Slayer",
+    19: "Farming",
+    20: "Runecrafting",
+    21: "Hunter",
+    22: "Construction",
+    23: "Summoning",
+    24: "Dungeoneering",
+    25: "Divination",
+    26: "Invention",
+    27: "Archaeology"
+}

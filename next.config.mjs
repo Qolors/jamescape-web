@@ -17,7 +17,7 @@ export default defineNextConfig({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['wiseoldman.net']
+    domains: ['discordapp.com', 'cdn.discordapp.com']
   },
   typescript: {
     ignoreBuildErrors: true,
