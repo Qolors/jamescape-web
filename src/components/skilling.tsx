@@ -6,7 +6,7 @@ const Skilling = (props: any) => {
     
     useEffect(() => {
         const x = [];
-        for (var object in props.props) {
+        for (const object in props.props) {
             x.push(props.props[object])
         }
         x.sort(function(a, b) {return a.id - b.id})
