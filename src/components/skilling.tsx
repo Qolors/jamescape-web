@@ -5,7 +5,7 @@ const Skilling = (props: any) => {
     const [skills, setSkills] = useState<Object>([])
     
     useEffect(() => {
-        let x = [];
+        const x = [];
         for (var object in props.props) {
             x.push(props.props[object])
         }
@@ -22,9 +22,9 @@ const Skilling = (props: any) => {
   return (
             <div className='w-full flex flex-col place-items-center'>
                 <div className='flex flex-col w-full'>
-                    {skills.map((s: Object) => {
+                    {skills.map((s: any) => {
 
-                        let x: number = s.id
+                        const x: number = s.id
                         
                         const str = formatter.format(parseInt(s.xp))
                         return(
